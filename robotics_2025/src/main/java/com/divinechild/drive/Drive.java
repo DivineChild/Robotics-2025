@@ -1,23 +1,22 @@
 package com.divinechild.drive;
 
-import java.io.IOException;
-
 import org.firmata4j.firmata.FirmataDevice;
 
 import com.divinechild.Constants;
-import com.divinechild.PinIO.PinIO;
+import com.divinechild.motors.Motor;
+import com.divinechild.motors.MoveType.DriveModes;
 
 public class Drive {
-    private final PinIO leftDrive;
-    private final PinIO rightDrive;
+    private final Motor leftMotor;
+    private final Motor rightMotor;
     
     public Drive(FirmataDevice arduino) {
-        leftDrive = new PinIO(arduino, Constants.DriveMotors.leftDriveID);
-        rightDrive = new PinIO(arduino, Constants.DriveMotors.rightDriveID);
+        leftMotor = new Motor(arduino, Constants.DriveMotors.leftDriveID);
+        rightMotor = new Motor(arduino, Constants.DriveMotors.rightDriveID);
     }
 
-    public void movePercentOut(long leftPercentOut, long rightPercentOut) throws IllegalStateException, IOException {
-        leftDrive.setValue(leftPercentOut);
-        rightDrive.setValue(rightPercentOut);
+    public void movePercentOut(long leftPercentOut, long rightPercentOut) {
+        leftMotor.move(DriveModes.PercentOut, leftPercentOut);
+        rightMotor.move(DriveModes.PercentOut, rightPercentOut);
     }
 }
