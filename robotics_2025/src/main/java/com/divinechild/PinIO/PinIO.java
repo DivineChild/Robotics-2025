@@ -2,8 +2,9 @@ package com.divinechild.PinIO;
 
 import java.io.IOException;
 
+import org.firmata4j.IODevice;
 import org.firmata4j.Pin;
-import org.firmata4j.firmata.FirmataDevice;
+import org.firmata4j.Pin.Mode;
 
 /**Class for Pin operation, used to handle errors in one place */
 public class PinIO {
@@ -14,7 +15,7 @@ public class PinIO {
      * @param arduino - Object for the arduino
      * @param pinID - ID of the pin being controlled
      */
-    public PinIO (FirmataDevice arduino, int pinID) {
+    public PinIO (IODevice arduino, int pinID) {
         this.pin = arduino.getPin(pinID);
     }
 
@@ -24,7 +25,7 @@ public class PinIO {
      * @param pinID - ID of the pin being controlled
      * @param mode - Mode for the pin
      */
-    public PinIO (FirmataDevice arduino, int pinID, Pin.Mode mode) {
+    public PinIO (IODevice arduino, int pinID, Pin.Mode mode) {
         this(arduino, pinID);
         setMode(mode);
     }
@@ -51,5 +52,13 @@ public class PinIO {
         } catch (IllegalArgumentException | IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Returns the current pin mode
+     * @return Mode of the pin
+     */
+    public Mode getPinMode() {
+        return pin.getMode();
     }
 }

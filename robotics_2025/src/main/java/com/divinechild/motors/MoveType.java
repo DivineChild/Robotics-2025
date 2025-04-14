@@ -5,7 +5,7 @@ public class MoveType {
     public static enum DriveModes {
         /**Control the motor with percent out */
         PercentOut,
-        /**Control the motor with encoder ticks */
+        /**Control the motor with degrees */
         Position
     }
 }

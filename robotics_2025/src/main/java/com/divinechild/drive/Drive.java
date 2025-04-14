@@ -6,17 +6,24 @@ import com.divinechild.Constants;
 import com.divinechild.motors.Motor;
 import com.divinechild.motors.MoveType.DriveModes;
 
+/**Class for Driving the car */
 public class Drive {
-    private final Motor leftMotor;
-    private final Motor rightMotor;
+    private final Motor driveMotor;
     
+    /**
+     * Creates a new Drive
+     * @param arduino - Object of the arduino
+     */
     public Drive(FirmataDevice arduino) {
-        leftMotor = new Motor(arduino, Constants.DriveMotors.leftDriveID);
-        rightMotor = new Motor(arduino, Constants.DriveMotors.rightDriveID);
+        driveMotor = new Motor(arduino, Constants.DriveMotors.driveID);
     }
 
-    public void movePercentOut(long leftPercentOut, long rightPercentOut) {
-        leftMotor.move(DriveModes.PercentOut, leftPercentOut);
-        rightMotor.move(DriveModes.PercentOut, rightPercentOut);
+    /**
+     * Move both motors at the same percent out
+     * @param percentOut - Percent out for both motors
+     */
+    public void movePercentOut(double percentOut) {
+        driveMotor.move(DriveModes.PercentOut, percentOut);
     }
+
 }

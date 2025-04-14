@@ -1,11 +1,12 @@
 package com.divinechild.motors;
 
+import org.firmata4j.IODevice;
 import org.firmata4j.Pin.Mode;
-import org.firmata4j.firmata.FirmataDevice;
 
 import com.divinechild.PinIO.PinIO;
 import com.divinechild.motors.MoveType.DriveModes;
 
+/**Class for controlling a motor */
 public class Motor {
     private final PinIO motorIO; 
 
@@ -14,7 +15,7 @@ public class Motor {
      * @param arduino Object of the arduino
      * @param pinID Port the motor is plugged into
      */
-    public Motor(FirmataDevice arduino, int pinID) {
+    public Motor(IODevice arduino, int pinID) {
         this.motorIO = new PinIO(arduino, pinID);
     }
 
@@ -28,18 +29,38 @@ public class Motor {
         // Switch statement for moving the motor as needed
         switch (type) {
             case PercentOut:
-                motorIO.setMode(Mode.PWM);
-                // 255 is the max percent out, so we multiply the value by that
-                motorIO.setValue((long) ((double) value * 255));
+                movePercentOut((double) value);
                 break;
-        
             case Position:
-                motorIO.setValue((long) value);
+                movePosition((long) value);
                 break;
             default:
                 break;
         }
     }
 
-    public void movePercentOut() {}
+    /**
+     * Set motor percent output
+     * @param percentOut - Value 1 to -1
+     */
+    private void movePercentOut(double percentOut) {
+        setMode(Mode.PWM);
+        // 255 is the max percent out, so we multiply the value by that
+        motorIO.setValue((long) (percentOut * 255));
+    }
+    
+    /**
+     * Set the motor angle (degrees)
+     * @param degrees - Degrees to set the servo to
+     */
+    private void movePosition(long degrees) {
+        setMode(Mode.SERVO);
+        // Set the position of the motor in degrees
+        motorIO.setValue(degrees);
+    }
+
+    /** Set the mode of the motor if it is not the correct mode*/
+    private void setMode(Mode mode) {
+        if (motorIO.getPinMode() != mode) motorIO.setMode(mode);
+    }
 }
