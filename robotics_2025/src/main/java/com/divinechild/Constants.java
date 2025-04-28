@@ -7,10 +7,10 @@ public class Constants {
 
     public class DriveMotors {
         /**ID of the drive motors */
-        public static int driveID = 2;
+        public static int driveID = 12;
 
         /**ID of the steering motor */
-        public static int steerID = 4;
+        public static int steerID = 10;
         
     }
 

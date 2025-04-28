@@ -44,10 +44,13 @@ public class Main {
         
         IODevice arduino = new FirmataDevice(Constants.arduinoPort);
 
-
         try {
             arduino.start();
             System.out.println("Board Started, wahoo");
+
+            Main main = new Main(arduino);
+        
+            main.driveSub.movePercentOut(0.5); 
 
             arduino.ensureInitializationIsDone();
 
