@@ -33,4 +33,8 @@ public class DriveSub {
     public void steer(long position) {
         steerMotor.move(DriveModes.Position, position);
     }
+
+    public Motor getDriveMotor() {
+        return driveMotor;
+    }
 }

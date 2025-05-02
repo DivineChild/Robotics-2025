@@ -16,7 +16,7 @@ public class Sonar {
      * @param label Label sent to the arduino to identify sonar selection
      */
     public Sonar(char label) {
-        serialPort = SerialPort.getCommPort(Constants.SerialPorts.DEFAULT_PORT);
+        serialPort = SerialPort.getCommPort("Constants.SerialPorts.DEFAULT_PORT");
         serialPort.setBaudRate(9600);
         serialPort.openPort();
 

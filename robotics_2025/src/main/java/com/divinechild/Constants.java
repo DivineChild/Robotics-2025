@@ -29,19 +29,24 @@ public class Constants {
 
     }
 
-    public static class SerialPorts {
-        // macOS typical pattern
-        public static final String MAC_HINT = "/dev/tty.usbmodem";
+    // public static class SerialPorts {
+    //     // macOS typical pattern
+    //     public static final String MAC_HINT = "/dev/tty.usbmodem";
 
-        // Linux typical patterns (may be ttyUSB or ttyACM depending on the board)
-        public static final String LINUX_USB_HINT = "/dev/ttyUSB";
-        public static final String LINUX_ACM_HINT = "/dev/ttyACM";
+    //     // Linux typical patterns (may be ttyUSB or ttyACM depending on the board)
+    //     public static final String LINUX_USB_HINT = "/dev/ttyUSB";
+    //     public static final String LINUX_ACM_HINT = "/dev/ttyACM0";
 
-        // Windows COM port prefix
-        public static final String WINDOWS_HINT = "COM";
+    //     // Windows COM port prefix
+    //     public static final String WINDOWS_HINT = "COM";
 
-        // Optional: fallback or user-set override
-        public static final String DEFAULT_PORT = MAC_HINT; // set manually if needed
+    //     // Optional: fallback or user-set override
+    //     public static final String DEFAULT_PORT = LINUX_ACM_HINT; // set manually if needed
+    // }
+
+    public static class Light {
+        public static final int light1ID = 8;
+        public static final int light2ID = 9;
+        public static final int light3ID = 11;
     }
-
 }
