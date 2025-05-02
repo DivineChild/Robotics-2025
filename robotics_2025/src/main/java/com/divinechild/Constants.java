@@ -49,4 +49,8 @@ public class Constants {
         public static final int light2ID = 9;
         public static final int light3ID = 11;
     }
+
+    public static class Positions {
+        public static final int STEER_CENTER_POSITION = 94;
+    }
 }

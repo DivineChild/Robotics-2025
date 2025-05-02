@@ -46,17 +46,17 @@ public class Motor {
     private void movePercentOut(double percentOut) {
         setMode(Mode.PWM);
         // 255 is the max percent out, so we multiply the value by that
-        motorIO.setValue((long) (percentOut * 255));
+        motorIO.setValue((long) (percentOut * 180));
     }
     
     /**
      * Set the motor angle (degrees)
-     * @param degrees - Degrees to set the servo to
+     * @param position - Degrees to set the servo to
      */
-    private void movePosition(long degrees) {
+    private void movePosition(long position) {
         setMode(Mode.SERVO);
         // Set the position of the motor in degrees
-        motorIO.setValue(degrees);
+        motorIO.setValue(position);
     }
 
     /** Set the mode of the motor if it is not the correct mode*/

@@ -53,7 +53,9 @@ public class Main {
             Main main = new Main(arduino);
 
 
-            Drive.movePercentOut(main.driveSub, 0.6);
+            // Drive.movePercentOut(main.driveSub, 90);
+            Drive.movePosition(main.driveSub, 90);
+            Drive.steer(main.driveSub, Constants.Positions.STEER_CENTER_POSITION);
             while (true) {
 
 

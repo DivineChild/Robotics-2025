@@ -6,6 +6,6 @@ public class MoveType {
         /**Control the motor with percent out */
         PercentOut,
         /**Control the motor with degrees */
-        Position
+        Position,
     }
 }

@@ -28,4 +28,12 @@ public class Drive {
         driveSub.getDriveMotor().move(DriveModes.PercentOut, percentOut);
     }
 
+    public static void movePosition(DriveSub driveSub, long pose) {
+        driveSub.getDriveMotor().move(DriveModes.Position, pose);
+    }
+
+    public static void steer(DriveSub driveSub, long pose) {
+        driveSub.getSteerMotor().move(DriveModes.Position, pose);
+    }
+
 }
