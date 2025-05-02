@@ -40,12 +40,16 @@ public class Main {
 
     public static void main(String[] args) throws IllegalStateException, IOException {
         
-        Constants.arduinoPort = args.length > 0 ? args[0]: Constants.arduinoPort;
+        // Constants.arduinoPort = args.length > 0 ? args[0]: Constants.arduinoPort;
         
         IODevice arduino = new FirmataDevice(Constants.arduinoPort);
 
         try {
             arduino.start();
+            arduino.ensureInitializationIsDone();
+
+            System.out.println(arduino.getPinsCount());
+
             System.out.println("Board Started, wahoo");
 
             Main main = new Main(arduino);
