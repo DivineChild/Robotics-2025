@@ -44,7 +44,7 @@ public class Constants {
     //     public static final String DEFAULT_PORT = LINUX_ACM_HINT; // set manually if needed
     // }
 
-    public static class Light {
+    public static class Lights {
         public static final int light1ID = 8;
         public static final int light2ID = 9;
         public static final int light3ID = 11;

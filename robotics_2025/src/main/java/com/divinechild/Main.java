@@ -11,6 +11,7 @@ import org.firmata4j.IODevice;
 import org.firmata4j.firmata.FirmataDevice;
 
 import com.divinechild.drive.Drive;
+import com.divinechild.lights.Light;
 import com.divinechild.motors.Motor;
 import com.divinechild.sonars.Sonar;
 import com.divinechild.subsystems.DriveSub;
@@ -24,6 +25,10 @@ public class Main {
     // private final Sonar rightSonar;
     // private final Sonar backSonar;
 
+    private final Light light1;
+    private final Light light2;
+    private final Light light3;
+
     private final DriveSub driveSub;
 
     public Main(IODevice arduino) {
@@ -35,6 +40,10 @@ public class Main {
 
         this.driveSub = new DriveSub(driveMotor, steerMotor);
         // this.sonarSub = new SonarSub(frontSonar, rightSonar, backSonar);
+
+        this.light1 = new Light(arduino, Constants.Lights.light1ID);
+        this.light2 = new Light(arduino, Constants.Lights.light2ID);
+        this.light3 = new Light(arduino, Constants.Lights.light3ID);
     }
 
     public static void main(String[] args) throws IllegalStateException, IOException {
@@ -54,8 +63,11 @@ public class Main {
 
 
             // Drive.movePercentOut(main.driveSub, 90);
-            Drive.movePosition(main.driveSub, 90);
-            Drive.steer(main.driveSub, Constants.Positions.STEER_CENTER_POSITION);
+            // Drive.movePosition(main.driveSub, 90);
+            // Drive.steer(main.driveSub, Constants.Positions.STEER_CENTER_POSITION);
+
+            light1.turnOn();
+
             while (true) {
 
 
@@ -102,6 +114,9 @@ public class Main {
                 // myLED.setValue(1);
 
                 // myLED.setValue(0);
+
+                
+
             }
 
         } catch (Exception e) {
