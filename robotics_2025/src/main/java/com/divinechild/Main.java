@@ -10,6 +10,8 @@ import java.io.IOException;
 import org.firmata4j.IODevice;
 import org.firmata4j.firmata.FirmataDevice;
 
+import com.divinechild.Challenges.AlphaChallenge;
+import com.divinechild.Challenges.Challenge;
 import com.divinechild.drive.Drive;
 import com.divinechild.lights.Light;
 import com.divinechild.motors.Motor;
@@ -61,12 +63,17 @@ public class Main {
 
             Main main = new Main(arduino);
 
+            AlphaChallenge alphaChallenge = new AlphaChallenge(main.driveSub, main.light1, main.light2, main.light3); 
 
             // Drive.movePercentOut(main.driveSub, 90);
             // Drive.movePosition(main.driveSub, 90);
             // Drive.steer(main.driveSub, Constants.Positions.STEER_CENTER_POSITION);
 
-            light1.turnOn();
+            // main.light1.turnOn();
+            // main.light2.turnOn();
+            // main.light3.turnOn();
+
+            alphaChallenge.run();
 
             while (true) {
 

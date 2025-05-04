@@ -45,12 +45,13 @@ public class Constants {
     // }
 
     public static class Lights {
-        public static final int light1ID = 8;
-        public static final int light2ID = 9;
-        public static final int light3ID = 11;
+        public static int light1ID = 8;
+        public static int light2ID = 9;
+        public static int light3ID = 11;
     }
 
     public static class Positions {
+        public static final int DRIVE_ZERO_SPEED = 90;
         public static final int STEER_CENTER_POSITION = 94;
     }
 }
