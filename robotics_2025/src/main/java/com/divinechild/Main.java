@@ -1,10 +1,5 @@
 package com.divinechild;
 
-import ai.picovoice.porcupine.Porcupine;
-import ai.picovoice.porcupine.PorcupineException;
-
-import javax.sound.sampled.*;
-
 import java.io.IOException;
 
 import org.firmata4j.IODevice;
@@ -12,9 +7,7 @@ import org.firmata4j.firmata.FirmataDevice;
 
 import com.divinechild.drive.Drive;
 import com.divinechild.motors.Motor;
-import com.divinechild.sonars.Sonar;
 import com.divinechild.subsystems.DriveSub;
-import com.divinechild.subsystems.SonarSub;
 
 public class Main {
     private final Motor driveMotor;
@@ -51,7 +44,6 @@ public class Main {
             System.out.println("Board Started, wahoo");
 
             Main main = new Main(arduino);
-
 
             // Drive.movePercentOut(main.driveSub, 90);
             Drive.movePosition(main.driveSub, 90);
