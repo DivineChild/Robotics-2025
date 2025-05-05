@@ -1,10 +1,5 @@
 package com.divinechild;
 
-import ai.picovoice.porcupine.Porcupine;
-import ai.picovoice.porcupine.PorcupineException;
-
-import javax.sound.sampled.*;
-
 import java.io.IOException;
 
 import org.firmata4j.IODevice;
@@ -15,9 +10,7 @@ import com.divinechild.Challenges.Challenge;
 import com.divinechild.drive.Drive;
 import com.divinechild.lights.Light;
 import com.divinechild.motors.Motor;
-import com.divinechild.sonars.Sonar;
 import com.divinechild.subsystems.DriveSub;
-import com.divinechild.subsystems.SonarSub;
 
 public class Main {
     private final Motor driveMotor;
@@ -62,7 +55,6 @@ public class Main {
             System.out.println("Board Started, wahoo");
 
             Main main = new Main(arduino);
-
             AlphaChallenge alphaChallenge = new AlphaChallenge(main.driveSub, main.light1, main.light2, main.light3); 
 
             // Drive.movePercentOut(main.driveSub, 90);

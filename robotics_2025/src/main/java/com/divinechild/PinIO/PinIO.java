@@ -43,6 +43,20 @@ public class PinIO {
     }
 
     /**
+     * Reads the current value of the pin.
+     * @return 1 if HIGH, 0 if LOW, or -1 if an error occurs
+     */
+    public long getValue() {
+        try {
+            return pin.getValue(); // Reads the actual pin state
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+
+    /**
      * Set the mode of the pin
      * @param mode - Mode of the Pin
      */
