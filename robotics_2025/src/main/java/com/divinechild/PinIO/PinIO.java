@@ -55,6 +55,13 @@ public class PinIO {
         }
     }
 
+    public boolean isHigh() {
+        return pin.getValue() == 1;
+    }
+
+    public boolean isLow() {
+        return pin.getValue() == 0;
+    }
 
     /**
      * Set the mode of the pin

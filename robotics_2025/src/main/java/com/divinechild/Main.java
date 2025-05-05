@@ -65,9 +65,13 @@ public class Main {
             // main.light2.turnOn();
             // main.light3.turnOn();
 
-            alphaChallenge.run();
+            // alphaChallenge.run();
 
             while (true) {
+
+                main.light1.turnOn();
+                main.light2.turnOn();
+                main.light3.turnOn();
 
 
                 // ===== ADD PORCUPINE INITIALIZATION HERE =====
