@@ -29,32 +29,66 @@ public class Challenge {
         Thread.sleep(toMillis(seconds));
     }
 
-    public void move(int speed) {
+    public void move(int speed) throws InterruptedException {
+        // Drive.moveSpeed += Constants.deltaTime * (speed > Drive.moveSpeed ? -1 : 1);
+
+        // int deltaSpeed = speed - (int)Drive.moveSpeed;
+
+        while (Drive.moveSpeed != speed) {
+            if (Drive.moveSpeed < speed) {
+                Drive.moveSpeed++;
+            } else if (Drive.moveSpeed > speed) {
+                Drive.moveSpeed--;
+            }
+
+            Drive.movePercentOut(driveSub, Drive.moveSpeed - Constants.Positions.DRIVE_ZERO_SPEED);
+
+            hold(0.02);
+        }
+
         Drive.movePercentOut(driveSub, speed - Constants.Positions.DRIVE_ZERO_SPEED);
     }
 
     public void move(int speed, double seconds) throws InterruptedException {
-        Drive.movePercentOut(driveSub, speed - Constants.Positions.DRIVE_ZERO_SPEED);
+        // Drive.moveSpeed += Constants.deltaTime * (speed > Drive.moveSpeed ? -1 : 1);
+
+        move(speed);
         hold(seconds);
-        Drive.movePercentOut(driveSub, 0 - Constants.Positions.DRIVE_ZERO_SPEED);
+        move(0);
     }
 
-    public void turn(int degrees) {
+    public void turn(int degrees) throws InterruptedException {
+        while (Drive.steerAngle != degrees) {
+            if (Drive.steerAngle < degrees) {
+                Drive.steerAngle++;
+            } else if (Drive.steerAngle > degrees) {
+                Drive.steerAngle--;
+            }
+
+            Drive.steer(driveSub, Drive.steerAngle - Constants.Positions.STEER_CENTER_POSITION);
+
+            hold(0.02);
+        }
+
         Drive.steer(driveSub, degrees - Constants.Positions.STEER_CENTER_POSITION);
     }
 
     public void turn(int degrees, double seconds) throws InterruptedException {
-        Drive.steer(driveSub, degrees - Constants.Positions.STEER_CENTER_POSITION);
+        turn(degrees);
         hold(seconds);
-        Drive.steer(driveSub, Constants.Positions.STEER_CENTER_POSITION);
+        turn(0);
     }
 
-    public void halt() {
+    public void halt() throws InterruptedException {
         move(0);
     }
 
-    public void center() {
+    public void center() throws InterruptedException {
         turn(0);
+    }
+
+    public void forceStop() {
+        Drive.movePercentOut(driveSub, Constants.Positions.DRIVE_ZERO_SPEED);
     }
 
     public void turnLightsOn() {
@@ -69,6 +103,12 @@ public class Challenge {
         light3.turnOff();
     }
 
+    public void setLightsBrightness(int brightness) {
+        light1.setBrightness(brightness);
+        light2.setBrightness(brightness);
+        light3.setBrightness(brightness);
+    }
+
     public void flashLights(int numTimes, double flashPeriod) throws InterruptedException {
         for (int i = 0; i < numTimes; i++) {
             turnLightsOn();
@@ -78,23 +118,36 @@ public class Challenge {
         }
     }
 
-    public void start() {
+    public void start() throws InterruptedException {
         halt();
         center();
         isRunning = true;
     }
 
-    public void finish() {
+    public void finish() throws InterruptedException {
         halt();
         center();
+        flashLights(3, 1);
         isRunning = false;
     }
 
-    public void alpha() throws InterruptedException {
+    public void testSteer() throws InterruptedException {
         start();
 
-        finish();
+        turn(20, 2);
+        hold(1);
+        turn(-20, 2);
 
-        
+        finish();        
+    }
+
+    public void testMove() throws InterruptedException {
+        start();
+
+        move(10, 2);
+        hold(1);
+        move(-10, 2);
+
+        finish();        
     }
 }

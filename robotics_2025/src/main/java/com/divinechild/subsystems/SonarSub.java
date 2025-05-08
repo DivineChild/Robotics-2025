@@ -3,9 +3,9 @@ package com.divinechild.subsystems;
 import com.divinechild.sonars.Sonar;
 /**Subsystem for recording distance via ultrasnonic sensors */
 public class SonarSub {
-    private final Sonar frontSonar;
-    private final Sonar rightSonar;
-    private final Sonar backSonar;
+    public final Sonar frontSonar;
+    public final Sonar rightSonar;
+    public final Sonar backSonar;
 
     /**
      * Creates a new SonarSub

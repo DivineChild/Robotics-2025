@@ -2,8 +2,11 @@ package com.divinechild;
 
 public class Constants {
     public static String arduinoPort = "/dev/ttyACM0";
+    // public static String arduinoPort = "COM20";
 
     public static double speedOfSound = 343.0; /* meters per second */
+
+    public static double deltaTime = 0.001;
 
     public class DriveMotors {
         /**ID of the drive motors */
@@ -44,7 +47,7 @@ public class Constants {
     //     public static final String DEFAULT_PORT = LINUX_ACM_HINT; // set manually if needed
     // }
 
-    public static class Lights {
+    public static class LightEmittingDiodes {
         public static int light1ID = 8;
         public static int light2ID = 9;
         public static int light3ID = 11;

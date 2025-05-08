@@ -11,6 +11,9 @@ import com.divinechild.subsystems.DriveSub;
 /**Class for Driving the car */
 public class Drive {
     private Motor driveMotor;
+
+    public static int moveSpeed = 0;
+    public static int steerAngle = 0;
     
     /**
      * Creates a new Drive

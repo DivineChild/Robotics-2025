@@ -7,7 +7,6 @@ public class AlphaChallenge extends Challenge {
 
     public AlphaChallenge(DriveSub driveSub, Light light1, Light light2, Light light3) {
         super(driveSub, light1, light2, light3);
-        //TODO Auto-generated constructor stub
     }
 
     public void run() throws InterruptedException {
