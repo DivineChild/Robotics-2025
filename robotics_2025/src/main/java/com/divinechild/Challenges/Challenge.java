@@ -1,5 +1,7 @@
 package com.divinechild.Challenges;
 
+import java.util.Timer;
+
 import com.divinechild.Constants;
 import com.divinechild.drive.Drive;
 import com.divinechild.lights.Light;
@@ -124,6 +126,7 @@ public class Challenge {
         isRunning = true;
     }
 
+
     public void finish() throws InterruptedException {
         halt();
         center();
@@ -150,4 +153,6 @@ public class Challenge {
 
         finish();        
     }
+
+    public void run() throws InterruptedException, Throwable {}
 }

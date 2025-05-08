@@ -1,5 +1,8 @@
 package com.divinechild.Challenges;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import com.divinechild.drive.Drive;
 import com.divinechild.lights.Light;
 import com.divinechild.subsystems.DriveSub;
@@ -8,43 +11,43 @@ import com.divinechild.subsystems.SonarSub;
 public class CharlieChallenge extends Challenge {
 
     private final SonarSub sonarSub;
+    boolean run = true;
     
     public CharlieChallenge(DriveSub driveSub, SonarSub sonarSub, Light light1, Light light2, Light light3) {
         super(driveSub, light1, light2, light3);
         this.sonarSub = sonarSub;
     }
 
-    public void run() throws Throwable {
-        while (true) {
-            double frontDistance = sonarSub.getDistanceFront();
+    @Override
+    public void run() throws InterruptedException {
+        Thread.startVirtualThread(new Runnable() {
+            @Override
+            public void run() {
+                Timer timer = new Timer();
 
-            if (frontDistance < 20) {
-                forceStop();
-                flashLights(10, 0.2);
-                break;
-            } if (frontDistance < 50) {
-                move(-20);
-                setLightsBrightness(16);
-            } else if (frontDistance < 80) {
-                move(-10);
-                setLightsBrightness(8);
-            } else if (frontDistance < 100) {
-                move(-5);
-                setLightsBrightness(4);
-            } else if (frontDistance < 150) {
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        run = false;
+                    }
+                }, 30 * 1000);
+            }
+        });
+
+        System.out.println("Running Charlie");
+
+        while (run) {
+
+            double distanceCM = sonarSub.getDistanceFront();
+
+            if (distanceCM < 150 && distanceCM != -1) {
                 halt();
-                setLightsBrightness(0);
-            } else if (frontDistance < 170) {
-                move(5);
-                setLightsBrightness(4);
-            } else if (frontDistance < 220) {
-                move(10);
-                setLightsBrightness(8);
             } else {
                 move(20);
-                setLightsBrightness(16);
             }
 
         }
+
+        run = true;
     }
 }
